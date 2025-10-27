@@ -17,7 +17,7 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo "Building the application..."
-                bat 'npm install'  // or mvn package / pip install -r requirements.txt
+                bat 'npm install'  
             }
         }
 

@@ -17,7 +17,7 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo "Building the application..."
-                sh 'npm install'  // or mvn package / pip install -r requirements.txt
+                run 'npm install'  // or mvn package / pip install -r requirements.txt
             }
         }
 

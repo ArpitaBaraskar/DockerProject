@@ -17,14 +17,14 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo "Building the application..."
-                run 'npm install'  // or mvn package / pip install -r requirements.txt
+                bat 'npm install'  // or mvn package / pip install -r requirements.txt
             }
         }
 
         stage('Run Tests') {
             steps {
                 echo "Running tests..."
-                sh 'npm test' // optional
+                bat 'npm test' // optional
             }
         }
 
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     echo "Building Docker image..."
-                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    bat "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                 }
             }
         }
@@ -41,12 +41,12 @@ pipeline {
             steps {
                 script {
                     // Stop existing container if running
-                    sh """
+                    bat """
                     docker ps -q --filter name=${CONTAINER_NAME} | grep -q . && docker stop ${CONTAINER_NAME} && docker rm ${CONTAINER_NAME} || true
                     """
 
                     // Run new container
-                    sh "docker run -d -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}"
+                    bat "docker run -d -p 3000:3000 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}"
                 }
             }
         }

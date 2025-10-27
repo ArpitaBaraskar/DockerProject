@@ -1,6 +1,6 @@
 FROM node:18-alpine
 
-WORKDIR /DOCKERPROJECT
+WORKDIR /DockerProject
 COPY package*.json ./
 RUN npm ci --only=production
 COPY . .

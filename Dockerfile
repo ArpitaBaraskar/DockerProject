@@ -1,9 +1,15 @@
-FROM node:18-alpine
 
-WORKDIR /DockerProject
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
+# Use official JDK image
+FROM openjdk:17-jdk-slim
 
-EXPOSE 3000
-CMD ["npm", "start"]
+# Set working directory
+WORKDIR /app
+
+# Copy your code
+COPY app/Jenkins.java .
+
+# Compile
+RUN javac Jenkins.java
+
+# Run
+CMD ["java", "Jenkins"]

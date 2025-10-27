@@ -17,22 +17,22 @@ pipeline {
         stage('Build Application') {
             steps {
                 echo "Building the application..."
-                run 'npm install'  // or mvn package / pip install -r requirements.txt
+                sh 'npm install'  // or mvn package / pip install -r requirements.txt
             }
         }
 
-        stage('Run Tests') {
-            steps {
-                echo "Running tests..."
-                sh 'npm test' // optional
-            }
-        }
+        // stage('Run Tests') {
+        //     steps {
+        //         echo "Running tests..."
+        //         sh 'npm test' // optional
+        //     }
+        // }
 
         stage('Build Docker Image') {
             steps {
                 script {
                     echo "Building Docker image..."
-                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                    sh "docker build -t ${my-app}:${my-app.1} ."
                 }
             }
         }

@@ -21,18 +21,18 @@ pipeline {
             }
         }
 
-        // stage('Run Tests') {
-        //     steps {
-        //         echo "Running tests..."
-        //         sh 'npm test' // optional
-        //     }
-        // }
+        stage('Run Tests') {
+            steps {
+                echo "Running tests..."
+                sh 'npm test' // optional
+            }
+        }
 
         stage('Build Docker Image') {
             steps {
                 script {
                     echo "Building Docker image..."
-                    sh "docker build -t ${my-app}:${my-app.1} ."
+                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                 }
             }
         }
